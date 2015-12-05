@@ -11,9 +11,12 @@ with urllib.request.urlopen(url) as response:
 i = 0
 urls = []
 for line in html.split(','):
+    if 'status' in line:
+        status = line.split('"')[-2]
+        status = ''.join(i for i in status if ord(i)<128) #filter non ascii characters
     if 'display_name' in line:
         name = line.split('"')[-2]
-        print(str(i) + ') ' + name)
+        print(str(i) + ') ' + name + ' : ' + status)
         i += 1
     if 'url' in line:
         url = line.split('"')[-2]
