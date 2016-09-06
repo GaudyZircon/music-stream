@@ -17,6 +17,7 @@ while True:
             status = ''.join(i for i in status if ord(i)<128) #filter non ascii characters
         if 'display_name' in line:
             name = line.split('"')[-2]
+            name = ''.join(i for i in name if ord(i)<128) #filter non ascii characters
             print(str(i) + ') ' + name + ' : ' + status)
             i += 1
         if 'url' in line:
