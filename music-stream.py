@@ -4,7 +4,7 @@ import subprocess
 LIMIT = 10
 CLIENT_ID='jzkbprff40iqj646a697cyrvl0zt2m6'
 PLAYER = 'vlc'
-STREAMS_URL = 'http://streams.twitch.tv/kraken/streams?limit='+str(LIMIT)+'&offset=0&game=Music&broadcaster_language=&on_site=1&client_id='+str(CLIENT_ID)
+STREAMS_URL = 'https://api.twitch.tv/kraken/streams?limit='+str(LIMIT)+'&offset=0&game=Music&broadcaster_language=&on_site=1&client_id='+str(CLIENT_ID)
 
 while True:
     with urllib.request.urlopen(STREAMS_URL) as response:
