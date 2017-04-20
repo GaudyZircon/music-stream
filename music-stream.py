@@ -29,7 +29,7 @@ while True:
     while (choice >= LIMIT):
         choice = int(input('Choose a stream\n'))
 
-    cmd = ['livestreamer', '--http-header', 'Client-ID='+str(CLIENT_ID), urls[choice], 'audio']
+    cmd = ['livestreamer', '--http-header', 'Client-ID='+str(CLIENT_ID), urls[choice], 'audio,audio_only']
     if PLAYER != 'vlc':
         cmd.append('-p')
         cmd.append(PLAYER)
