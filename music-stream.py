@@ -1,14 +1,31 @@
 #!/usr/bin/env python3
 import urllib.request
+import urllib.parse
 import subprocess
 
 LIMIT = 10
 CLIENT_ID='jzkbprff40iqj646a697cyrvl0zt2m6'
 PLAYER = 'vlc'
-STREAMS_URL = 'https://api.twitch.tv/kraken/streams?limit='+str(LIMIT)+'&offset=0&game=Music&broadcaster_language=&on_site=1&client_id='+str(CLIENT_ID)
+GAMES = ['Music', 'Music%20%26%20Performing%20Arts']
 
 while True:
-    with urllib.request.urlopen(STREAMS_URL) as response:
+    i = 0
+    for game in GAMES:
+        print(str(i) + ') ' + urllib.parse.unquote(game))
+        i += 1
+
+    choice = len(GAMES)
+    while (choice >= len(GAMES)):
+        try:
+            choice = int(input('Choose a playlist\n'))
+        except ValueError:
+            pass
+    print('\n')
+
+    game = GAMES[choice]
+    streams_url = 'https://api.twitch.tv/kraken/streams?limit='+str(LIMIT)+'&offset=0&game='+game+'&broadcaster_language=&on_site=1&client_id='+str(CLIENT_ID)
+    html = None
+    with urllib.request.urlopen(streams_url) as response:
         html = response.read().decode('utf8')
 
     i = 0
