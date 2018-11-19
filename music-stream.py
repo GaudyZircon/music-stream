@@ -28,7 +28,10 @@ while True:
 
     choice = LIMIT
     while (choice >= LIMIT):
-        choice = int(input('Choose a stream\n'))
+        try:
+            choice = int(input('Choose a stream\n'))
+        except ValueError:
+            pass
 
     cmd = ['livestreamer', '--http-header', 'Client-ID='+str(CLIENT_ID), urls[choice], 'audio,audio_only']
     if PLAYER != 'vlc':
