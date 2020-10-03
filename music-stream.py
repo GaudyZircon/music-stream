@@ -3,7 +3,7 @@ import urllib.request
 import urllib.parse
 import subprocess
 
-LIMIT = 10
+LIMIT = 20
 CLIENT_ID='jzkbprff40iqj646a697cyrvl0zt2m6'
 PLAYER = 'vlc'
 GAMES = ['Music', 'Music%20%26%20Performing%20Arts']
@@ -23,9 +23,12 @@ while True:
     print('\n')
 
     game = GAMES[choice]
-    streams_url = 'https://api.twitch.tv/kraken/streams?limit='+str(LIMIT)+'&offset=0&game='+game+'&broadcaster_language=&on_site=1&client_id='+str(CLIENT_ID)
+    streams_url = 'https://api.twitch.tv/kraken/streams?limit='+str(LIMIT)+'&offset=0&game='+game
+    req = urllib.request.Request(streams_url)
+    req.add_header('Accept', 'application/vnd.twitchtv.v5+json')
+    req.add_header('Client-ID', CLIENT_ID)
     html = None
-    with urllib.request.urlopen(streams_url) as response:
+    with urllib.request.urlopen(req) as response:
         html = response.read().decode('utf8')
 
     i = 0
