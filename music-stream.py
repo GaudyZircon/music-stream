@@ -53,7 +53,7 @@ while True:
         except ValueError:
             pass
 
-    cmd = ['livestreamer', '--http-header', 'Client-ID='+str(CLIENT_ID), urls[choice], 'audio,audio_only']
+    cmd = ['streamlink', '--http-header', 'Client-ID='+str(CLIENT_ID), urls[choice], 'audio,audio_only', '--twitch-disable-ads']
     if PLAYER != 'vlc':
         cmd.append('-p')
         cmd.append(PLAYER)
